@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Concrete\EntityFramework\" />
+    <Compile Remove="Concrete\EntityFramework\**" />
+    <EmbeddedResource Remove="Concrete\EntityFramework\**" />
+    <None Remove="Concrete\EntityFramework\**" />
   </ItemGroup>
 
   <ItemGroup>
