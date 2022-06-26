@@ -26,5 +26,16 @@ namespace Business.Concrete
             // geçerse return et gibi.
            return _productDal.GetAll();
         }
+
+        public List<Product> GetByCategoryId(int id)
+        {
+            return _productDal.GetAll(product => product.CategoryId == id);
+        }
+
+        public List<Product> GetByUnitPrice(int min, int max)
+        {
+            return _productDal.GetAll(
+                product => product.UnitPrice >= min && product.UnitPrice <= max);
+        }
     }
 }
