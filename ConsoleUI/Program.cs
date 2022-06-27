@@ -8,12 +8,24 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            
+            ProductTest();
+           // CategoryTest();
+
+        }
+
+        private static void CategoryTest()
+        {
+            CategoryManager categoryManager = new CategoryManager(new EFCategoryDal());
+            foreach (var category in categoryManager.GetAll())
+                Console.WriteLine($"Category Names: {category.CategoryName}");
+        }
+
+        private static void ProductTest()
+        {
             ProductManager productManager = new ProductManager(new EFProductDal());
 
-            foreach(var product in productManager.GetAll())
-                Console.WriteLine($"Product Names: {product.ProductName}");
-            
+            foreach (var product in productManager.GetProductDetails())
+                Console.WriteLine($"Product: {product.ProductName} ------ Category: {product.CategoryName}");
         }
     }
 }

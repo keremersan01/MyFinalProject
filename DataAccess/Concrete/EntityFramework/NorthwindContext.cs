@@ -15,13 +15,14 @@ namespace DataAccess.Concrete.EntityFramework
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // sql case - insensitive olduğu için connection stringde büyük küçük harf duyarsız.
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=Northwind;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\ProjectModels;Database=Northwind;Trusted_Connection=true");
         }
 
         // hangi tablo hangi entity ile ilişkili bunu set ediyoruz.
         public DbSet<Product> Products{ get; set; }
         public DbSet<Customer> Customers{ get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
     }
 }
