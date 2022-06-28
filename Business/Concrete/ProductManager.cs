@@ -38,28 +38,32 @@ namespace Business.Concrete
             // iş kodları
             // yetkisi var mı? 
             // geçerse return et gibi.
-           return new DataResult(_productDal.GetAll());
+
+            if (DateTime.Now.Hour == 15)
+                return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
+
+           return new SuccessDataResult<List<Product>>(_productDal.GetAll(), true, Messages.ProductsListed);
         }
 
-        public List<Product> GetByCategoryId(int id)
+        public IDataResult<List<Product>> GetByCategoryId(int id)
         {
-            return _productDal.GetAll(product => product.CategoryId == id);
+            return new SuccessDataResult<List< Product >>(_productDal.GetAll(product => product.CategoryId == id));
         }
 
-        public List<Product> GetByUnitPrice(int min, int max)
+        public IDataResult<List<Product>> GetByUnitPrice(int min, int max)
         {
-            return _productDal.GetAll(
-                product => product.UnitPrice >= min && product.UnitPrice <= max);
+            return new SuccessDataResult<List<Product>>(_productDal.GetAll(
+                product => product.UnitPrice >= min && product.UnitPrice <= max));
         }
 
-        public Product GetProductById(int id)
+        public IDataResult<Product> GetProductById(int id)
         {
-            return _productDal.Get(product => product.ProductId == id);
+            return new SuccessDataResult<Product>(_productDal.Get(product => product.ProductId == id));
         }
 
-        public List<ProductDetailsDTO> GetProductDetails()
+        public IDataResult<List<ProductDetailsDTO>> GetProductDetails()
         {
-            return _productDal.GetProductDetails();
+            return new SuccessDataResult<List<ProductDetailsDTO>>(_productDal.GetProductDetails());
         }
     }
 }
