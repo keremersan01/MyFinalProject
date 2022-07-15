@@ -12,6 +12,8 @@ namespace WebAPI
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            //AOP
+            //Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject --> IoC Container
 
             builder.Services.AddControllers();
             builder.Services.AddSingleton<IProductService, ProductManager>();
