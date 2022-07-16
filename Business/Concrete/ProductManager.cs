@@ -39,7 +39,7 @@ namespace Business.Concrete
             // yetkisi var mı? 
             // geçerse return et gibi.
 
-            if (DateTime.Now.Hour == 15)
+            if (DateTime.Now.Hour == 23)
                 return new ErrorDataResult<List<Product>>(Messages.MaintenanceTime);
 
            return new SuccessDataResult<List<Product>>(_productDal.GetAll(), true, Messages.ProductsListed);
